@@ -1,6 +1,7 @@
 import { Tree } from 'react-d3-tree';
+import { Chess } from 'chess.js';
 import { parse } from '@mliebelt/pgn-parser';
-import { Chessboard } from "react-chessboard";
+import { ChessPosition } from "./ChessPosition";
 import '../styles/MoveTree.css';
 
 const renderForeignObjectNode = ({
@@ -9,30 +10,22 @@ const renderForeignObjectNode = ({
   customNodeChessboardProps,
   customNodeLabelProps
 }) => {
-  console.log(nodeDatum)
   return (
-  <g className="customChessboardNode">
-    <circle r={15}></circle>
-
-    <foreignObject {...customNodeChessboardProps}>
-      <div className='chessboardContainer'>
-        <Chessboard id="BasicBoard" boardWidth={140} />
-      </div>
-    </foreignObject>
-
-    <foreignObject {...customNodeLabelProps} >
-      <div className='nodeLabelContainer'>
-        <code>{ nodeDatum.name }</code>
-      </div>
-    </foreignObject>
-
-  </g>
+    <g className="customChessboardNode">
+      <circle r={15}></circle>
+      <ChessPosition 
+        nodeDatum={nodeDatum}
+        customNodeChessboardProps={customNodeChessboardProps}
+        customNodeLabelProps={customNodeLabelProps}
+      />
+    </g>
 )};
 
 export const MoveTree = ({ formValue }) => {
-  const game = parse(formValue, {startRule: 'games'});
-  const gameMoves = game[0] ? game[0].moves : [];
-  const moveTreeData = buildTree(gameMoves);
+  const pgn = parse(formValue, {startRule: 'games'});
+
+  const moves = pgn[0] ? pgn[0].moves : [];
+  const treeData = buildTree(moves);
 
   const customNodeChessboardProps = { width: 140, height: 140, x: -70, y: -70 };
   const customNodeLabelProps = { width: 140, height: 20, x: -70, y: 70 };
@@ -41,7 +34,7 @@ export const MoveTree = ({ formValue }) => {
     <>
       <div className="move-tree-container" >
         <Tree 
-          data={moveTreeData}
+          data={treeData}
           dimensions={{ height: 600, width: 600 }}
           depthFactor={220}
           separation={{ nonSiblings: 2, siblings: 1.25}}
@@ -60,10 +53,14 @@ export const MoveTree = ({ formValue }) => {
 function buildTree(moves) {
   const root = {
     name: 'Start',
-    children: []
+    children: [],
+    attributes: {}
   };
 
-  parseMove(moves, 0, root)
+  if (moves[0]) {
+    parseMove(moves, 0, root);
+  }
+
   return root;
 }
 
@@ -72,9 +69,23 @@ function parseMove(moves, index, parent) {
     return {}
   }
 
+  const moveString = moves[index].notation?.notation || 'error';
+  
+  const game = new Chess(parent.attributes.fen);
+  try {
+    game.move(moveString);
+  } catch (error) {
+    console.error(error);
+    console.log(`${parent.name} --> ${moveString}`)
+    console.log(game.ascii())
+  }
+
   const node = {
-    name: moves[index].notation?.notation || 'name not found',
-    children: []
+    name: moveString,
+    children: [],
+    attributes: {
+      fen: game.fen()
+    }
   }
 
   parseMove(moves, index+1, node);
@@ -86,7 +97,8 @@ function parseMove(moves, index, parent) {
 
     parent.children.push({
       name: variation[0]?.notation?.notation || 'nnf',
-      children: []
+      children: [],
+      attributes: {}
     })
   });
 }

@@ -19,7 +19,9 @@ export function Form(props) {
           justifyContent: 'center',
           alignItems: 'center'
           }}>
-        <input type="text" value={formInput} onChange={handleInputChange} />
+        <input type="text" value={formInput} onChange={handleInputChange} 
+          style={{width: '90%'}}
+        />
         <button type="submit">Submit</button>
       </div>
     </form>

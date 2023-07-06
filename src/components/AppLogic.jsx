@@ -7,7 +7,7 @@ export const AppLogic = () => {
 
     const handleFormSubmit = (value) => {
         setFormValue(value);
-    }
+    };
 
     return (
         <div>
