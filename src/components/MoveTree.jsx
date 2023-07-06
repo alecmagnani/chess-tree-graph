@@ -69,18 +69,36 @@ function parseMove(moves, index, parent) {
     return {}
   }
 
-  const moveString = moves[index].notation?.notation || 'error';
-  
+  const currMove = moves[index];
+  const currMoveNode = getNode(currMove, parent);
+
+  parseMove(moves, index+1, currMoveNode);
+  parent.children.push(currMoveNode);
+
+  // TODO build full tree for each variation
+  // FOR EACH VARIATION:
+  // 1. Make altNode for the firsts move of the line, 'altMove'
+  // 2. Build tree for variation using altNode as parent
+  // 3. Add altNode to parent's children
+
+  currMove.variations.forEach((variation) => {
+    const altMove = variation[0];
+    const altNode = getNode(altMove, parent);
+    parseMove(variation, 1, altNode);
+    parent.children.push(altNode);
+  });
+};
+
+function getNode(move, parent) {
+  const moveString = move.notation.notation
   const game = new Chess(parent.attributes.fen);
   try {
     game.move(moveString);
   } catch (error) {
     console.error(error);
-    console.log(`${parent.name} --> ${moveString}`)
-    console.log(game.ascii())
   }
 
-  const node = {
+  return {
     name: moveString,
     children: [],
     attributes: {
@@ -88,17 +106,4 @@ function parseMove(moves, index, parent) {
     }
   }
 
-  parseMove(moves, index+1, node);
-  parent.children.push(node);
-
-  // TODO build full tree for each variation
-  moves[index].variations.forEach((variation, i) => {
-    const variationTree = parseMove(variation, 0, node)
-
-    parent.children.push({
-      name: variation[0]?.notation?.notation || 'nnf',
-      children: [],
-      attributes: {}
-    })
-  });
 }
