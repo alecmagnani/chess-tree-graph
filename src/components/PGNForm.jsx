@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export function Form(props) {
-  const [formInput, setFormInput] = useState('');
+  const [formInput, setFormInput] = useState("");
 
   const handleInputChange = (event) => {
     setFormInput(event.target.value);
@@ -14,13 +14,18 @@ export function Form(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div style={{ 
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-          }}>
-        <input type="text" value={formInput} onChange={handleInputChange} 
-          style={{width: '90%'}}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <input
+          type="text"
+          value={formInput}
+          onChange={handleInputChange}
+          style={{ width: "90%" }}
         />
         <button type="submit">Submit</button>
       </div>

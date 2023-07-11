@@ -1,0 +1,11 @@
+.chess-pos-container {
+  border: 4px solid green;
+}
+
+.chess-pos-label {
+  text-align: center;
+}
+
+/* .chess-pos-comments {
+    size: 2px;
+} */

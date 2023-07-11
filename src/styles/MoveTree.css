@@ -1,6 +1,11 @@
 .move-tree-container {
-    border: 1px solid black;
-    border-radius: 9px;
-    width: 90vw;
-    height: 85vh;
+  border: 3px solid green;
+  border-radius: 9px;
+  width: 90vw;
+  height: 85vh;
+}
+
+.custom-link {
+  stroke: green;
+  stroke-width: 5px;
 }
