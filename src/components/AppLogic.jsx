@@ -14,7 +14,7 @@ export const AppLogic = () => {
   return (
     <div>
       <Form onSubmit={handleFormSubmit} />
-      { showMoveTree && <MoveTree formValue={formValue} /> }
+      {showMoveTree && <MoveTree formValue={formValue} />}
     </div>
   );
 };

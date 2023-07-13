@@ -28,7 +28,7 @@ export function Form(props) {
           onChange={handleInputChange}
           style={{ width: "90%" }}
         />
-        <button type="submit">{ SUBMIT_BUTTON_TEXT }</button>
+        <button type="submit">{SUBMIT_BUTTON_TEXT}</button>
       </div>
     </form>
   );

@@ -1,4 +1,3 @@
-
 import { Chess } from "chess.js";
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -17,8 +16,8 @@ import {
   ANNOTATION_3_BRILLIANT,
   ANNOTAITON_4_INTERESTING,
   ANNOTAITON_5_DUBIOUS,
-  ANNOTATION_6_BLUNDER
-} from "../constants"
+  ANNOTATION_6_BLUNDER,
+} from "../constants";
 
 export function buildTree(moves) {
   const root = {
@@ -26,7 +25,7 @@ export function buildTree(moves) {
     children: [],
     attributes: {
       isSelected: false,
-      isSearchMatch: false
+      isSearchMatch: false,
     },
   };
 
@@ -73,12 +72,12 @@ function getNode(move, parent) {
       id: uuidv4(),
       fen: game.fen(),
       comments: move.commentAfter,
-      annotation: move.nag?.map(nag => getAnnotationFromNag(nag)).join(' '),
+      annotation: move.nag?.map((nag) => getAnnotationFromNag(nag)).join(" "),
       isSelected: false,
       isSearchMatch: false,
-      borderColor: getBorderColor(false, false, move.nag)
+      borderColor: getBorderColor(false, false, move.nag),
     },
-  }
+  };
 }
 
 function getBorderColor(isSelected, isSearchMatch, nag) {
@@ -91,29 +90,43 @@ function getBorderColor(isSelected, isSearchMatch, nag) {
   } else {
     return MOVE_COLOR_DEFAULT;
   }
-};
+}
 
 function getAnnotationFromNag(nag) {
   switch (nag) {
-    case '$1': return ANNOTATION_1_GREAT;
-    case '$2': return ANNOTATION_2_MISTAKE;
-    case '$3': return ANNOTATION_3_BRILLIANT;
-    case '$4': return ANNOTAITON_4_INTERESTING;
-    case '$5': return ANNOTAITON_5_DUBIOUS;
-    case '$6': return ANNOTATION_6_BLUNDER;
-    default: '';
+    case "$1":
+      return ANNOTATION_1_GREAT;
+    case "$2":
+      return ANNOTATION_2_MISTAKE;
+    case "$3":
+      return ANNOTATION_3_BRILLIANT;
+    case "$4":
+      return ANNOTAITON_4_INTERESTING;
+    case "$5":
+      return ANNOTAITON_5_DUBIOUS;
+    case "$6":
+      return ANNOTATION_6_BLUNDER;
+    default:
+      "";
   }
 }
 
 function getColorFromNag(nag) {
   switch (nag) {
-    case '$1': return MOVE_COLOR_1_GREAT;
-    case '$2': return MOVE_COLOR_2_MISTAKE;
-    case '$3': return MOVE_COLOR_3_BRILLIANT;
-    case '$4': return MOVE_COLOR_4_INTERESTING;
-    case '$5': return MOVE_COLOR_5_DUBIOUS;
-    case '$6': return MOVE_COLOR_6_BLUNDER;
-    default: return MOVE_COLOR_DEFAULT;
+    case "$1":
+      return MOVE_COLOR_1_GREAT;
+    case "$2":
+      return MOVE_COLOR_2_MISTAKE;
+    case "$3":
+      return MOVE_COLOR_3_BRILLIANT;
+    case "$4":
+      return MOVE_COLOR_4_INTERESTING;
+    case "$5":
+      return MOVE_COLOR_5_DUBIOUS;
+    case "$6":
+      return MOVE_COLOR_6_BLUNDER;
+    default:
+      return MOVE_COLOR_DEFAULT;
   }
 }
 
@@ -123,8 +136,8 @@ export function findNodeById(node, id) {
   }
 
   if (node.children) {
-    for (let i=0; i < node.children.length; i++) {
-      const childNode = findNodeById(node.children[i], id)
+    for (let i = 0; i < node.children.length; i++) {
+      const childNode = findNodeById(node.children[i], id);
       if (childNode) {
         return childNode;
       }
@@ -136,8 +149,8 @@ export function searchTreeAndHighlightMoves(node, term) {
   node.attributes.isSearchMatch = node.name === term;
 
   if (node.children) {
-    for (let i=0; i < node.children.length; i++) {
-      searchTreeAndHighlightMoves(node.children[i], term)
+    for (let i = 0; i < node.children.length; i++) {
+      searchTreeAndHighlightMoves(node.children[i], term);
     }
   }
 }
