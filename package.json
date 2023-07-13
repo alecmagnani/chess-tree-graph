@@ -13,12 +13,14 @@
   "dependencies": {
     "@mliebelt/pgn-parser": "^1.4.12",
     "chess.js": "^1.0.0-beta.6",
+    "clone": "^2.1.2",
     "d3": "^7.8.5",
     "react": "^18.2.0",
     "react-chessboard": "^3.1.0",
     "react-d3-tree": "^3.6.1",
     "react-dom": "^18.2.0",
-    "react-tree-graph": "^8.0.1"
+    "react-tree-graph": "^8.0.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

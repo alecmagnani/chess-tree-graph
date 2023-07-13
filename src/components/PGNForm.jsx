@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { SUBMIT_BUTTON_TEXT } from "../constants";
 
 export function Form(props) {
   const [formInput, setFormInput] = useState("");
@@ -27,7 +28,7 @@ export function Form(props) {
           onChange={handleInputChange}
           style={{ width: "90%" }}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">{ SUBMIT_BUTTON_TEXT }</button>
       </div>
     </form>
   );
