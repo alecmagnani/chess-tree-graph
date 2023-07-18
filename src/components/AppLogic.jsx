@@ -1,20 +1,19 @@
 import { useState } from "react";
-import { Form } from "./PGNForm";
-import { MoveTree } from "./MoveTree";
+import { SideBar } from "./sidebar/SideBar";
+import { ChessTree } from "./chess-tree/ChessTree";
+import "../styles/AppLogic.css";
 
 export const AppLogic = () => {
-  const [showMoveTree, setShowMoveTree] = useState(false);
-  const [formValue, setFormValue] = useState("");
+  const [pgnFormData, setPgnFormData] = useState("");
 
-  const handleFormSubmit = (value) => {
-    setFormValue(value);
-    setShowMoveTree(true);
+  const handlePgnFormSubmit = (data) => {
+    setPgnFormData(data);
   };
 
   return (
-    <div>
-      <Form onSubmit={handleFormSubmit} />
-      {showMoveTree && <MoveTree formValue={formValue} />}
+    <div className="app-logic-container">
+      <SideBar onSubmit={handlePgnFormSubmit} />
+      <ChessTree pgnFormData={pgnFormData} />
     </div>
   );
 };

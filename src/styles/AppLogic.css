@@ -1,0 +1,5 @@
+.app-logic-container {
+  height: 90vh;
+  display: flex;
+  align-items: flex-start;
+}

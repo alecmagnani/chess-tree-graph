@@ -1,17 +1,9 @@
-import reactLogo from "../assets/react.svg";
-import viteLogo from "/vite.svg";
+import "../styles/Header.css";
 
 export const Header = () => {
-  const headerStyle = {
-    padding: "20px 0",
-    lineHeight: "1.5em",
-    color: "#aeadad",
-    textAlign: "center",
-  };
-
   return (
     <>
-      <header style={headerStyle} className={"header"}>
+      <header className="app-header">
         <h1>chess tree</h1>
       </header>
     </>

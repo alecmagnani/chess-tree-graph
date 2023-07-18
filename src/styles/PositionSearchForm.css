@@ -1,0 +1,13 @@
+.position-search-form {
+  margin-top: 0%;
+}
+
+.position-search-form form input {
+  width: 100%;
+  height: 30px;
+}
+
+.position-search-form form button {
+  width: 100%;
+  height: 30px;
+}

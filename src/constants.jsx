@@ -1,19 +1,17 @@
-const DEFAULT_BORDER = "4px solid";
-
 export const START_NODE_NAME = "Start";
 export const SEARCH_BUTTON_TEXT = "Search";
 export const SUBMIT_BUTTON_TEXT = "Submit";
 
-export const MOVE_COLOR_DEFAULT = `${DEFAULT_BORDER} green`;
-export const MOVE_COLOR_SELECTED = `${DEFAULT_BORDER} lightgreen`;
-export const MOVE_COLOR_SEARCHMATCH = `${DEFAULT_BORDER} pink`;
+export const MOVE_COLOR_DEFAULT = "#a88865";
+export const MOVE_COLOR_SELECTED = "#96af8b";
+export const MOVE_COLOR_SEARCHMATCH = "#96af8b";
 
-export const MOVE_COLOR_1_GREAT = `${DEFAULT_BORDER} lightblue`;
-export const MOVE_COLOR_2_MISTAKE = `${DEFAULT_BORDER} orangered`;
-export const MOVE_COLOR_3_BRILLIANT = `${DEFAULT_BORDER} cyan`;
-export const MOVE_COLOR_4_INTERESTING = `${DEFAULT_BORDER} orange`;
-export const MOVE_COLOR_5_DUBIOUS = `${DEFAULT_BORDER} yellow`;
-export const MOVE_COLOR_6_BLUNDER = `${DEFAULT_BORDER} red`;
+export const MOVE_COLOR_1_GREAT = "#5b8bb0";
+export const MOVE_COLOR_2_MISTAKE = "#D99342";
+export const MOVE_COLOR_3_BRILLIANT = "#1aada6";
+export const MOVE_COLOR_4_INTERESTING = "#f7c046";
+export const MOVE_COLOR_5_DUBIOUS = "#e58f2a";
+export const MOVE_COLOR_6_BLUNDER = "#ca3431";
 
 export const ANNOTATION_1_GREAT = "!";
 export const ANNOTATION_2_MISTAKE = "?";

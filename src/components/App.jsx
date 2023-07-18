@@ -5,12 +5,10 @@ import "../styles/App.css";
 const App = () => {
   return (
     <>
-      {/* <div className="wrapper"> */}
-      <div className="chess-diff">
+      <div className="app-container">
         <Header />
         <AppLogic />
       </div>
-      {/* </div> */}
     </>
   );
 };
