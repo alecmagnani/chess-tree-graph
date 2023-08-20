@@ -11,7 +11,7 @@ npm run dev
 
 Open [localhost:5173](http://localhost:5173/)
 
-![Screenshot]('./screenshot.png')
+![Screenshot](./screenshot.png)
 
 ## Libraries Used
 * [mliebelt/pgn-parser](https://github.com/mliebelt/pgn-parser)
