@@ -45,11 +45,11 @@ export const ChessTree = ({ pgnFormData }) => {
         <Tree
           data={data}
           nodeSize={nodeSize}
-          depthFactor={350}
-          separation={{ nonSiblings: 2, siblings: 2 }}
           renderCustomNodeElement={(rd3tProps) =>
             renderForeignObjectNode({ ...rd3tProps, foreignObjectProps })
           }
+          depthFactor={250}
+          separation={{ nonSiblings: 0.95, siblings: 0.95 }}
           pathClassFunc={() => "chess-tree-path"}
           orientation="horizontal"
         />

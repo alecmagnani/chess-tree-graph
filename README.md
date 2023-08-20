@@ -11,6 +11,8 @@ npm run dev
 
 Open [localhost:5173](http://localhost:5173/)
 
+![Screenshot]('./screenshot.png')
+
 ## Libraries Used
 * [mliebelt/pgn-parser](https://github.com/mliebelt/pgn-parser)
 * [Clariity/react-chessboard](https://github.com/Clariity/react-chessboard)
